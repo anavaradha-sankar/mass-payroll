@@ -55,8 +55,8 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <div className="grid gap-12 rounded-[2rem] bg-[#0F2533] px-6 py-12 text-white sm:px-12 sm:py-16 lg:grid-cols-2 lg:items-center">
+    <section id="contact" className="mx-auto max-w-[96rem] px-4 py-24 sm:px-6 lg:px-8">
+      <div className="grid gap-12 rounded-[2rem] bg-[#0F2533] px-6 py-12 text-white sm:px-12 sm:py-16 lg:grid-cols-2 lg:items-center lg:gap-20 lg:px-20 xl:px-24">
         <Reveal>
           <h2 className="text-5xl md:text-6xl">Let's build a business relationship<span className="text-[#3FA9DB]">.</span></h2>
           <p className="mt-6 text-lg text-white/65">Share your details and our team will get back to you by email, or chat with us on WhatsApp.</p>
