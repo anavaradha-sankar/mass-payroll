@@ -1,5 +1,5 @@
 // Hero: dark aurora banner, tilted live payroll dashboard with floating cards and cycling notifications
-import { BrochurePill, Check, CountUp, Headline, heroStats, lede, useCycle } from './HeroParts'
+import { BrochurePill, Check, Headline, lede, useCycle } from './HeroParts'
 
 const bars = [38, 52, 46, 61, 57, 70, 64, 77, 72, 85, 80, 96]
 const toasts = [
@@ -11,7 +11,7 @@ const toasts = [
 ]
 const dues = [['PF', '15 Nov'], ['ESI', '15 Nov'], ['TDS', '07 Nov'], ['PT', '30 Nov']]
 
-export default function HeroCommand() {
+export default function Hero({ edge = 'curve' }) {
   const t = useCycle(toasts.length, 2200)
   return (
     <section id="top" className="relative isolate overflow-hidden bg-[#041826] text-white">
@@ -20,7 +20,7 @@ export default function HeroCommand() {
       <div className="animate-drift-slow absolute -right-32 top-20 -z-10 h-[32rem] w-[32rem] rounded-full bg-[#1A8FC4] opacity-40 blur-[120px]" />
       <div className="absolute inset-0 -z-10 opacity-[.14] [background-image:linear-gradient(rgba(255,255,255,.5)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.5)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(70%_60%_at_60%_40%,black,transparent)]" />
 
-      <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 pb-16 pt-16 md:pt-24 lg:grid-cols-[1fr_1.05fr]">
+      <div className={`mx-auto grid max-w-6xl items-center gap-16 px-6 pt-16 ${edge === 'curve' ? 'pb-36 md:pb-52' : 'pb-16'} md:pt-24 lg:grid-cols-[1fr_1.05fr]`}>
         <div>
           <BrochurePill dark />
           <Headline dark className="mt-7" gradient="bg-gradient-to-r from-[#5FC3EE] via-white to-[#5FC3EE]" />
@@ -31,14 +31,6 @@ export default function HeroCommand() {
             </a>
             <a href="#platform" className="rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium backdrop-blur transition hover:bg-white/10">See what's included</a>
           </div>
-          <dl className="animate-rise mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-6 [animation-delay:400ms]">
-            {heroStats.map((s) => (
-              <div key={s.caption} className="flex flex-col-reverse justify-end">
-                <dt className="mt-1 text-xs text-white/55">{s.caption}</dt>
-                <dd className="text-2xl font-semibold tracking-tight md:text-3xl"><CountUp to={s.to} suffix={s.suffix} /></dd>
-              </div>
-            ))}
-          </dl>
         </div>
 
         {/* dashboard composition */}
@@ -100,7 +92,11 @@ export default function HeroCommand() {
           </div>
         </div>
       </div>
-      <div className="h-12 bg-gradient-to-b from-transparent to-background" />
+      {edge === 'curve' && (
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="absolute inset-x-0 bottom-0 block h-16 w-full text-background md:h-28" aria-hidden="true">
+          <path fill="currentColor" d="M0 120V70C360 10 1080 10 1440 70V120Z" />
+        </svg>
+      )}
     </section>
   )
 }
