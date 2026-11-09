@@ -56,23 +56,23 @@ export default function Contact() {
 
   return (
     <section id="contact" className="mx-auto max-w-[96rem] px-4 py-24 sm:px-6 lg:px-8">
-      <div className="grid gap-12 rounded-[2rem] bg-[#0F2533] px-6 py-12 text-white sm:px-12 sm:py-16 lg:grid-cols-2 lg:items-center lg:gap-20 lg:px-20 xl:px-24">
+      <div className="grid gap-12 rounded-[2rem] bg-[#0F2533] bg-[radial-gradient(60%_80%_at_0%_0%,rgba(95,195,238,.22),transparent_70%)] px-6 py-12 text-white sm:px-12 sm:py-16 lg:grid-cols-2 lg:items-center lg:gap-20 lg:px-20 xl:px-24">
         <Reveal>
-          <h2 className="text-5xl md:text-6xl">Let's build a business relationship<span className="text-[#3FA9DB]">.</span></h2>
+          <h2 className="text-5xl md:text-6xl">Let's build a business relationship<span className="text-sky">.</span></h2>
           <p className="mt-6 text-lg text-white/65">Share your details and our team will get back to you by email, or chat with us on WhatsApp.</p>
           <dl className="mt-10 space-y-6">
             <div>
-              <dt className="font-mono text-xs uppercase tracking-wider text-white/50">Phone</dt>
+              <dt className="font-mono text-xs uppercase tracking-wider text-sky">Phone</dt>
               <dd className="mt-1.5 text-lg font-medium">
-                {company.phones.map((p, i) => <span key={p.tel}>{i > 0 && ' / '}<a href={`tel:${p.tel}`} className="hover:text-[#3FA9DB]">{p.label}</a></span>)}
+                {company.phones.map((p, i) => <span key={p.tel}>{i > 0 && ' / '}<a href={`tel:${p.tel}`} className="hover:text-sky">{p.label}</a></span>)}
               </dd>
             </div>
             <div>
-              <dt className="font-mono text-xs uppercase tracking-wider text-white/50">Email</dt>
-              <dd className="mt-1.5 text-lg font-medium"><a href={`mailto:${company.email}`} className="hover:text-[#3FA9DB]">{company.email}</a></dd>
+              <dt className="font-mono text-xs uppercase tracking-wider text-sky">Email</dt>
+              <dd className="mt-1.5 text-lg font-medium"><a href={`mailto:${company.email}`} className="hover:text-sky">{company.email}</a></dd>
             </div>
             <div>
-              <dt className="font-mono text-xs uppercase tracking-wider text-white/50">Office</dt>
+              <dt className="font-mono text-xs uppercase tracking-wider text-sky">Office</dt>
               <dd className="mt-1.5 text-lg font-medium">{company.address}</dd>
             </div>
           </dl>

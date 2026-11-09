@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { company } from '../content'
 
 export const Check = ({ className = 'h-3 w-3' }) => (
@@ -7,29 +7,6 @@ export const Check = ({ className = 'h-3 w-3' }) => (
 
 const reduced = () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-// Counts from 0 to `to` once the element scrolls into view
-export function CountUp({ to, suffix = '', duration = 1600 }) {
-  const ref = useRef(null)
-  const [n, setN] = useState(reduced() ? to : 0)
-  useEffect(() => {
-    if (reduced()) return
-    let raf
-    const io = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return
-      io.disconnect()
-      const t0 = performance.now()
-      const tick = (t) => {
-        const p = Math.min(1, (t - t0) / duration)
-        setN(Math.round(to * (1 - Math.pow(1 - p, 3))))
-        if (p < 1) raf = requestAnimationFrame(tick)
-      }
-      raf = requestAnimationFrame(tick)
-    })
-    io.observe(ref.current)
-    return () => { io.disconnect(); cancelAnimationFrame(raf) }
-  }, [to, duration])
-  return <span ref={ref} className="tabular-nums">{n.toLocaleString('en-IN')}{suffix}</span>
-}
 
 // Steps through 0..count-1 every `ms`
 export function useCycle(count, ms = 1800) {
@@ -42,11 +19,6 @@ export function useCycle(count, ms = 1800) {
   return i
 }
 
-export const heroStats = [
-  { to: 20, suffix: '+', caption: 'Years of payroll expertise' },
-  { to: 600000, suffix: '+', caption: 'Payroll transactions a year' },
-  { to: 100, suffix: '%', caption: 'Statutory remittance accuracy' },
-]
 
 export function BrochurePill({ dark = false }) {
   return (

@@ -10,7 +10,8 @@ export default function App() {
     <div className="design-d min-h-screen overflow-x-hidden bg-background text-foreground">
       <Header />
       <Hero />
-      <Platform />
+      {/* service cards rise over the hero's curved bottom edge */}
+      <div className="relative z-10 -mt-16 md:-mt-24"><Platform /></div>
       <Why />
       <Contact />
       <Footer />
