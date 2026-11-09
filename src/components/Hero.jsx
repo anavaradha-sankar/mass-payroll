@@ -1,9 +1,9 @@
 import HeroCurrent from './hero/HeroCurrent'
-import HeroSplit from './hero/HeroSplit'
-import HeroBlue from './hero/HeroBlue'
-import HeroTicker from './hero/HeroTicker'
+import HeroCommand from './hero/HeroCommand'
+import HeroPipeline from './hero/HeroPipeline'
+import HeroOrbit from './hero/HeroOrbit'
 
-const variants = { a: HeroSplit, b: HeroBlue, c: HeroTicker }
+const variants = { '1': HeroCommand, '2': HeroPipeline, '3': HeroOrbit }
 
 export default function Hero() {
   const v = new URLSearchParams(location.search).get('hero')
