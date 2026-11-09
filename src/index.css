@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/* Option D layout; colours taken from the MASS logo (#005F8F brand blue) */
+@theme inline {
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-display: "Geist", system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --shadow-float: var(--shadow-float);
+}
+
+.design-d {
+  --radius: .75rem;
+  --shadow-float: 0 1px 2px rgba(15, 37, 51, .05), 0 12px 32px -12px rgba(0, 62, 94, .18);
+  --gradient-hero: radial-gradient(50% 55% at 50% 0%, rgba(0, 95, 143, .22) 0%, rgba(0, 89, 177, .08) 45%, transparent 75%);
+  --background: #F7FAFB;
+  --foreground: #0F2533;
+  --card: oklch(100% 0 0);
+  --primary: #005F8F;
+  --primary-foreground: oklch(100% 0 0);
+  --secondary: #EEF3F6;
+  --muted-foreground: #5B6B76;
+  --accent: #1A8FC4;
+  --accent-foreground: oklch(100% 0 0);
+  --border: #E1E7EB;
+  --input: #D3DCE2;
+  --ring: #005F8F;
+  font-family: var(--font-sans);
+}
+.design-d :is(h1, h2, h3) { font-family: var(--font-display); letter-spacing: 0; font-weight: 600; line-height: 1.02; }
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body { background-color: #F7FAFB; color: #0F2533; font-family: var(--font-sans); }
+}
+
+@utility bg-dots { background-image: radial-gradient(var(--color-border) 1px, transparent 1px); background-size: 18px 18px; }
+@utility bg-hero { background-image: var(--gradient-hero); }
+@utility lift {
+  transition: transform .35s cubic-bezier(.2, .7, .2, 1), box-shadow .35s;
+  &:hover { box-shadow: var(--shadow-float); transform: translateY(-4px); }
+}
+@utility animate-rise { animation: rise .8s cubic-bezier(.2, .7, .2, 1) both; }
+@utility animate-grow-y { transform-origin: center bottom; animation: grow-y 1.1s cubic-bezier(.2, .7, .2, 1) both; }
+@utility animate-pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2, .7, .2, 1), transform .8s cubic-bezier(.2, .7, .2, 1); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@keyframes rise { 0% { opacity: 0; transform: translateY(24px); } 100% { opacity: 1; transform: none; } }
+@keyframes grow-y { 0% { transform: scaleY(0); } 100% { transform: scaleY(1); } }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
+  .lift:hover { transform: none; }
+  *, ::before, ::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
