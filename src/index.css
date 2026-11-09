@@ -70,5 +70,16 @@
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; }
   .lift:hover { transform: none; }
+  .animate-toast { animation: none; }
   *, ::before, ::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
+
+@utility animate-float { animation: float 5s ease-in-out infinite; }
+@utility animate-drift { animation: drift 18s ease-in-out infinite alternate; }
+@utility animate-drift-slow { animation: drift 26s ease-in-out infinite alternate-reverse; }
+@utility animate-shine { animation: shine 6s linear infinite; }
+@utility animate-toast { animation: toast 2.2s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes drift { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(80px, 60px) scale(1.15); } }
+@keyframes shine { to { background-position: 200% center; } }
+@keyframes toast { 0% { opacity: 0; transform: translateY(-10px) scale(.96); } 12%, 85% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(6px); } }
