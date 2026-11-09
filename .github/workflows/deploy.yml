@@ -1,0 +1,84 @@
+name: Deploy to S3
+
+# Builds the site and publishes it to its own S3 bucket (separate from the old site).
+# The bucket is created and set up for static website hosting on the first run.
+#
+# Repo settings needed (Settings -> Secrets and variables -> Actions):
+#   Secrets:   AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+#   Variables: S3_BUCKET  (optional, defaults to mass-payroll-site)
+#              AWS_REGION (optional, defaults to ap-south-1)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  S3_BUCKET: ${{ vars.S3_BUCKET || 'mass-payroll-site' }}
+  AWS_REGION: ${{ vars.AWS_REGION || 'ap-south-1' }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Create and configure the bucket (first run only)
+        run: |
+          if aws s3api head-bucket --bucket "$S3_BUCKET" 2>/dev/null; then
+            echo "Bucket $S3_BUCKET already exists"
+          else
+            echo "Creating bucket $S3_BUCKET in $AWS_REGION"
+            if [ "$AWS_REGION" = "us-east-1" ]; then
+              aws s3api create-bucket --bucket "$S3_BUCKET"
+            else
+              aws s3api create-bucket --bucket "$S3_BUCKET" --create-bucket-configuration LocationConstraint="$AWS_REGION"
+            fi
+          fi
+
+          # Public static website: allow a public-read bucket policy, then add it
+          aws s3api put-public-access-block --bucket "$S3_BUCKET" --public-access-block-configuration \
+            BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=false,RestrictPublicBuckets=false
+          aws s3api put-bucket-policy --bucket "$S3_BUCKET" --policy "{
+            \"Version\": \"2012-10-17\",
+            \"Statement\": [{
+              \"Sid\": \"PublicReadWebsite\",
+              \"Effect\": \"Allow\",
+              \"Principal\": \"*\",
+              \"Action\": \"s3:GetObject\",
+              \"Resource\": \"arn:aws:s3:::$S3_BUCKET/*\"
+            }]
+          }"
+          aws s3 website "s3://$S3_BUCKET" --index-document index.html --error-document index.html
+
+      - name: Upload the site
+        run: |
+          # Hashed assets can be cached for a year; index.html must always be fresh
+          aws s3 sync dist/ "s3://$S3_BUCKET" --delete --exclude index.html \
+            --cache-control "public, max-age=31536000, immutable"
+          aws s3 cp dist/index.html "s3://$S3_BUCKET/index.html" \
+            --cache-control "no-cache" --content-type "text/html; charset=utf-8"
+
+      - name: Site address
+        run: echo "Live at http://$S3_BUCKET.s3-website.$AWS_REGION.amazonaws.com" >> "$GITHUB_STEP_SUMMARY"
