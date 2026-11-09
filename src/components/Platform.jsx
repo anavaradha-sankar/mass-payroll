@@ -6,7 +6,7 @@ const card = 'lift relative overflow-hidden rounded-2xl border border-border bg-
 function CardHead({ kicker, title, text }) {
   return (
     <div>
-      <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">{kicker}</p>
+      <p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-accent"><span className="h-1.5 w-1.5 rounded-full bg-sky" />{kicker}</p>
       <h3 className="mt-2 text-xl">{title}</h3>
       <p className="mt-2 text-sm text-muted-foreground">{text}</p>
     </div>
@@ -36,7 +36,7 @@ export default function Platform() {
             <div className="mt-5 flex h-28 items-end gap-1.5">
               {netPayBars.map((h, i) => (
                 <span key={i} style={{ height: `${h}%`, animationDelay: `${300 + i * 60}ms` }}
-                  className={`animate-grow-y flex-1 rounded-t-sm ${i === netPayBars.length - 1 ? 'bg-primary' : 'bg-primary/20'}`} />
+                  className={`animate-grow-y flex-1 rounded-t-sm ${i === netPayBars.length - 1 ? 'bg-gradient-to-t from-primary to-sky' : 'bg-sky/30'}`} />
               ))}
             </div>
             <div className="mt-2 flex justify-between font-mono text-[10px] text-muted-foreground"><span>12 months ago</span><span>This month</span></div>
@@ -48,7 +48,7 @@ export default function Platform() {
           <ul className="mt-6 space-y-2">
             {remittances.map(([code, text], i) => (
               <li key={code} style={{ animationDelay: `${400 + i * 150}ms` }} className="animate-rise flex items-center gap-3 rounded-lg border border-border bg-background px-3 py-2.5 text-sm">
-                <span className="grid h-5 w-5 place-items-center rounded-full bg-accent text-accent-foreground"><Check /></span>
+                <span className="grid h-5 w-5 place-items-center rounded-full bg-gradient-to-br from-accent to-sky text-white"><Check /></span>
                 <span className="w-9 font-mono text-xs font-medium">{code}</span>
                 <span className="text-muted-foreground">{text}</span>
               </li>
@@ -57,10 +57,10 @@ export default function Platform() {
         </Reveal>
 
         {stats.map((s, i) => (
-          <Reveal key={s.label} delay={i * 100} className={`${card} flex flex-col justify-between md:col-span-2 ${s.dark ? 'bg-foreground text-background' : ''}`}>
-            <p className={`font-mono text-[11px] uppercase tracking-wider ${s.dark ? 'opacity-60' : 'text-muted-foreground'}`}>{s.label}</p>
-            <p className="mt-10 text-6xl font-semibold tracking-tighter"><span className="tabular-nums">{s.value}</span></p>
-            <p className={`text-sm ${s.dark ? 'opacity-60' : 'text-muted-foreground'}`}>{s.caption}</p>
+          <Reveal key={s.label} delay={i * 100} className={`${card} flex flex-col justify-between md:col-span-2 ${s.dark ? 'border-transparent bg-gradient-to-br from-primary via-accent to-sky text-white' : 'bg-gradient-to-br from-sky-soft to-card'}`}>
+            <p className={`font-mono text-[11px] uppercase tracking-wider ${s.dark ? 'text-white/80' : 'text-muted-foreground'}`}>{s.label}</p>
+            <p className={`mt-10 text-6xl font-semibold tracking-tighter ${s.dark ? 'text-white' : 'text-primary'}`}><span className="tabular-nums">{s.value}</span></p>
+            <p className={`text-sm ${s.dark ? 'text-white/80' : 'text-muted-foreground'}`}>{s.caption}</p>
           </Reveal>
         ))}
 
@@ -79,7 +79,7 @@ export default function Platform() {
                 </div>
               ))}
             </dl>
-            <div className="mt-2 flex justify-between rounded-md bg-secondary px-3 py-2 font-semibold"><span>Net pay</span><span className="tabular-nums">{payslip.net}</span></div>
+            <div className="mt-2 flex justify-between rounded-md bg-sky-soft px-3 py-2 font-semibold text-primary"><span>Net pay</span><span className="tabular-nums">{payslip.net}</span></div>
           </div>
         </Reveal>
 
@@ -87,7 +87,7 @@ export default function Platform() {
           <div className="grid gap-6 sm:grid-cols-2">
             <CardHead kicker="Secure cloud records" title="Records kept safe" text="Employee database maintained on a safe, trusted and secure cloud platform." />
             <div className="flex items-center gap-3 self-center rounded-xl border border-border bg-background p-4">
-              <span className="grid h-10 w-10 place-items-center rounded-lg bg-primary/10 text-primary">
+              <span className="grid h-10 w-10 place-items-center rounded-lg bg-sky-soft text-primary">
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
               </span>
               <div className="text-sm"><p className="font-medium">Encrypted storage</p><p className="text-muted-foreground">186 employee records</p></div>
@@ -107,7 +107,7 @@ export default function Platform() {
 
       <Reveal as="ul" className="mt-16 grid gap-x-8 gap-y-6 border-t border-border pt-10 sm:grid-cols-2 lg:grid-cols-3">
         {included.map(([t, d]) => (
-          <li key={t}><p className="text-sm font-medium">{t}</p><p className="mt-1 text-sm text-muted-foreground">{d}</p></li>
+          <li key={t} className="border-l-2 border-sky pl-4"><p className="text-sm font-medium">{t}</p><p className="mt-1 text-sm text-muted-foreground">{d}</p></li>
         ))}
       </Reveal>
     </section>

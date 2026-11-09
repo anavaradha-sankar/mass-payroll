@@ -19,7 +19,7 @@ export default function App() {
             <div className="animate-drift-slow absolute -right-40 top-1/3 -z-10 h-[34rem] w-[34rem] rounded-full bg-[#005F8F] opacity-40 blur-[140px]" />
             <div className="animate-drift absolute -left-40 bottom-40 -z-10 h-[28rem] w-[28rem] rounded-full bg-[#1A8FC4] opacity-20 blur-[140px]" />
             <Platform />
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="block h-16 w-full text-white md:h-28" aria-hidden="true">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="block h-16 w-full text-[#E2F3FB] md:h-28" aria-hidden="true">
               <path fill="currentColor" d="M0 120V70C360 10 1080 10 1440 70V120Z" />
             </svg>
           </div>
