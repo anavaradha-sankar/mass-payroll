@@ -20,7 +20,7 @@ export default function Hero() {
       <div className="animate-drift-slow absolute -right-32 top-20 -z-10 h-[32rem] w-[32rem] rounded-full bg-[#1A8FC4] opacity-40 blur-[120px]" />
       <div className="absolute inset-0 -z-10 opacity-[.14] [background-image:linear-gradient(rgba(255,255,255,.5)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.5)_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(70%_60%_at_60%_40%,black,transparent)]" />
 
-      <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 pb-36 pt-16 md:pb-52 md:pt-24 lg:grid-cols-[1fr_1.05fr]">
+      <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 pb-36 pt-36 md:pb-52 md:pt-44 lg:grid-cols-[1fr_1.05fr]">
         <div>
           <BrochurePill dark />
           <Headline dark className="mt-7" gradient="bg-gradient-to-r from-[#5FC3EE] via-white to-[#5FC3EE]" />

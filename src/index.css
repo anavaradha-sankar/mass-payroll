@@ -50,6 +50,7 @@
 .design-d :is(h1, h2, h3) { font-family: var(--font-display); letter-spacing: 0; font-weight: 600; line-height: 1.02; }
 
 @layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
   * { border-color: var(--color-border); }
   body { background-color: #F2F8FC; color: #0F2533; font-family: var(--font-sans); }
 }
