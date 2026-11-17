@@ -2,6 +2,7 @@
 export const company = {
   name: 'MASS Payroll Solutions',
   whatsapp: '919840992989',
+  telegram: 'https://t.me/MASSPayroll',
   phones: [
     { label: '98409 92989', tel: '+919840992989' },
     { label: '73973 93319', tel: '+917397393319' },
