@@ -13,8 +13,9 @@ export default function App() {
       <Hero />
       {/* service cards rise over the hero's curved bottom edge */}
       <div className="relative z-10 -mt-16 md:-mt-24"><Platform /></div>
-      <Clients />
+      {clientsStyle !== '5' && <Clients />}
       <Why />
+      {clientsStyle === '5' && <Clients />}
       <Contact />
       <Footer />
     </div>
