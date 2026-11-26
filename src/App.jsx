@@ -1,6 +1,7 @@
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Platform from './components/Platform'
+import Clients from './components/Clients'
 import Why from './components/Why'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -12,6 +13,7 @@ export default function App() {
       <Hero />
       {/* service cards rise over the hero's curved bottom edge */}
       <div className="relative z-10 -mt-16 md:-mt-24"><Platform /></div>
+      <Clients />
       <Why />
       <Contact />
       <Footer />

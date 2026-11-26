@@ -54,3 +54,14 @@ export const benefits = [
   'Minimised risk of penalties',
   'Easy employee database management',
 ]
+
+// Top clients as of Oct '26 (from Muthuganesh's email, 26 Nov 2026). Logos live in public/clients/.
+export const clients = [
+  { name: 'Cheers Retail Pvt Ltd', business: 'Chain of restaurants', employees: 34, logo: './clients/cheers.png' },
+  { name: 'Day 2 Day Services', business: 'Security manpower services', employees: 585, logo: './clients/d2d.png' },
+  { name: 'GSK Manpower Consultancy Pvt Ltd', business: 'HMV driver manpower services', employees: 85, logo: './clients/gsk.png' },
+  { name: 'Kafee World Beverages Pvt Ltd', business: 'Food services (beverages & bites)', employees: 51, logo: './clients/kafee-world.png' },
+  { name: 'Levelup Facility Management Services', business: 'Facility management services', employees: 116, logo: './clients/levelup.png' },
+  { name: 'Progressive Industries', business: 'Manufacturing (precision parts)', employees: 38, logo: './clients/progressive.png' },
+  { name: 'SI Care Pvt Ltd', business: 'Property value management', employees: 26, logo: './clients/si-care.png' },
+]
