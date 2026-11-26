@@ -33,10 +33,10 @@ export const payslip = {
     ['Basic', '₹32,000'],
     ['HRA', '₹12,800'],
     ['Special allowance', '₹6,400'],
-    ['PF', '−₹3,840', true],
-    ['Professional tax', '−₹200', true],
+    ['PF', '−₹3,000', true],
+    ['Professional tax', '−₹209', true],
   ],
-  net: '₹47,160',
+  net: '₹47,991',
 }
 
 export const included = [

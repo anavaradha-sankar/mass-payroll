@@ -78,9 +78,9 @@ export default function Hero() {
             <div className="mt-3 space-y-1.5 text-[11px]">
               <div className="flex justify-between"><span className="text-muted-foreground">Basic</span><span>₹32,000</span></div>
               <div className="flex justify-between"><span className="text-muted-foreground">HRA</span><span>₹12,800</span></div>
-              <div className="flex justify-between"><span className="text-muted-foreground">PF</span><span className="text-rose-600">−₹3,840</span></div>
+              <div className="flex justify-between"><span className="text-muted-foreground">PF</span><span className="text-rose-600">−₹3,000</span></div>
             </div>
-            <div className="mt-3 flex justify-between border-t border-border pt-2 text-sm font-semibold"><span>Net pay</span><span className="text-primary">₹47,160</span></div>
+            <div className="mt-3 flex justify-between border-t border-border pt-2 text-sm font-semibold"><span>Net pay</span><span className="text-primary">₹47,991</span></div>
           </div>
 
           {/* cycling notification */}
