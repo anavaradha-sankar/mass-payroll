@@ -23,6 +23,7 @@ async function sendEnquiry(form) {
       Name: f.get('name'),
       Email: f.get('email'),
       Company: f.get('company'),
+      'Contact number': f.get('phone') || 'Not given',
       'Team size': f.get('teamSize') || 'Not given',
     }),
   })
@@ -34,7 +35,7 @@ async function sendEnquiry(form) {
 function openWhatsApp(form) {
   const f = new FormData(form)
   const lines = ['Hello MASS Payroll, I would like to know more.']
-  for (const [label, key] of [['Name', 'name'], ['Email', 'email'], ['Company', 'company'], ['Team size', 'teamSize']]) {
+  for (const [label, key] of [['Name', 'name'], ['Email', 'email'], ['Company', 'company'], ['Contact number', 'phone'], ['Team size', 'teamSize']]) {
     if (f.get(key)) lines.push(`${label}: ${f.get(key)}`)
   }
   window.open(`https://wa.me/${company.whatsapp}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener')
@@ -92,7 +93,10 @@ export default function Contact() {
             <label className="block text-sm font-medium">Full name<input required name="name" autoComplete="name" className={input} /></label>
             <label className="block text-sm font-medium">Work email<input required type="email" name="email" autoComplete="email" className={input} /></label>
           </div>
-          <label className="mt-5 block text-sm font-medium lg:mt-0">Company<input required name="company" autoComplete="organization" className={input} /></label>
+          <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:mt-0">
+            <label className="block text-sm font-medium">Company<input required name="company" autoComplete="organization" className={input} /></label>
+            <label className="block text-sm font-medium">Contact number <span className="font-normal text-muted-foreground">(optional)</span><input type="tel" name="phone" autoComplete="tel" inputMode="tel" placeholder="+91" className={input} /></label>
+          </div>
           <label className="mt-5 block text-sm font-medium lg:mt-0">Team size
             <select name="teamSize" defaultValue="" className={`${input} appearance-none bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2216%22%20height=%2216%22%20fill=%22none%22%20stroke=%22%235B6B76%22%20stroke-width=%222%22%3E%3Cpath%20d=%22m4%206%204%204%204-4%22/%3E%3C/svg%3E')] bg-[length:16px] bg-[position:right_1rem_center] bg-no-repeat pr-10`}>
               <option value="" disabled>Select</option>
