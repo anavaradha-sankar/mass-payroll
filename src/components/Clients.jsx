@@ -60,7 +60,7 @@ export default function Clients() {
       <div className="mx-auto mt-6 h-3 w-72 rounded-[100%] bg-primary/20 blur-md" />
       <div key={i} className="animate-rise mt-8 text-center">
         <p className="text-xl font-semibold">{c.name}</p>
-        <p className="mt-1 text-sm text-muted-foreground">{c.business} · {c.employees} employees</p>
+        <p className="mt-1 text-sm text-muted-foreground">{c.business}</p>
       </div>
       <div className="mt-6 flex justify-center gap-1.5">
         {clients.map((x, k) => <span key={x.name} className={`h-1.5 rounded-full transition-all duration-500 ${k === i ? 'w-6 bg-primary' : 'w-1.5 bg-primary/25'}`} />)}
